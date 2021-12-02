@@ -1,0 +1,47 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  mvc:
+    converters:
+      preferred-json-mapper: gson
+  data:
+    neo4j:
+      uri: bolt://localhost:7687
+      username: neo4j
+      password: secret
+
+springdoc:
+  packagesToScan: com.vodafone.projectoverview.presentation.rest
+  show-actuator: true
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    urls: [{url: "http://localhost:8080/api-docs", name: "localhost"}] #,{url: "https://project-overview.video.vodafone.com/api-docs", name: "Office-Network"}]
+    #  primaryName: "localhost"
+    #url: "http://localhost:8080/api-docs"
+    #default-models-expand-depth: -1
+    operationsSorter: alpha
+    enabled: true
+    tryItOutEnabled: false
+    path: /swagger
+    doc-expansion: none
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans,shutdown"
+    jmx:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  health:
+    probes:
+      enable: true
