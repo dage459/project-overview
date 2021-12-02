@@ -52,11 +52,6 @@ public class ContentRestController {
         return this.contentService.getContentByName(name);
     }
 
-    @GetMapping("/getAllContent")
-    public List<Content> getAllContent() {
-        return contentService.getAllContent();
-    }
-
     @GetMapping(
         consumes = MediaType.ALL_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
